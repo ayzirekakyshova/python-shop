@@ -10,4 +10,9 @@ class CategorySerializer(ModelSerializer):
 class ProductSerializer(ModelSerializer):
     class Meta:
         model = Product
-        fields = '__all__'                
+        fields = '__all__'  
+
+    def to_representation(self, instance: Product):
+        rep = super().to_representation(instance)
+        rep['category'] = CategorySerializer(instance.category).data
+        return rep                 
