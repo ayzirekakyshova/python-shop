@@ -2,6 +2,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from drf_yasg.utils import swagger_auto_schema
 from .serializers import CommentSerializer, RatingSerializer
 from .models import Comment, Rating
 from .permissions import IsAuthorOrReadOnly
@@ -17,6 +18,7 @@ class CommentViewSet(ModelViewSet):
 class CreateRatingAPIiew(APIView):
     permission_classes =[IsAuthenticated]
 
+    @swagger_auto_schema(request_body=RatingSerializer())
     def post(self, request):
         user = request.user
         ser = RatingSerializer(data=request.data, context={"request":request})

@@ -3,6 +3,8 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAdminUser
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 from .serializers import CategorySerializer, ProductSerializer
 from .models import Category, Product
 from .filters import ProductFilter
@@ -26,6 +28,10 @@ class ProductViewSet(ModelViewSet):
            return []# разрешаем всем
         return [IsAdminUser] # разрешаем тоько админам 
 
+
+    @swagger_auto_schema(manual_parameters=[
+        openapi.Parameter('q', openapi.IN_QUERY, type=openapi.TYPE_STRING)
+    ])
     @action(['GET'], detail=False)
     def search(self, request):
         q = request.query_params.get('q')
