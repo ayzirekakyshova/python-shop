@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_filters',
     'account',
     'main',
+    'review',
 ]
 
 MIDDLEWARE = [
