@@ -31,4 +31,4 @@ class Product(models.Model):
         return 0             
 
     class Meta:
-        ordeing = ["-id"]    
+        ordering = ["id"]    
