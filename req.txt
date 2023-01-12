@@ -1,6 +1,7 @@
 django
 djangorestframework
 djangorestframework-simplejwt
+django-cors-headers
 python-decouple
 drf_yasg
 psycopg2-binary

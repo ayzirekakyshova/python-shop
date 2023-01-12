@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'account',
     'main',
     'review',
+    'corsheaders',
 
 ]
 
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -88,8 +90,8 @@ DATABASES = {
         'NAME': config('DB_NAME'),
         'USER':config('DB_USER'),
         'PASSWORD':config('DB_PASSWORD'),
-        'HOST': 'localhost',
-        'POST': '5432',
+        'HOST': config ('DB_HOST'),
+        'PORT': config ('DB_PORT'),
     }
 }
 
@@ -168,3 +170,12 @@ SWAGGER_SETTINGS = {
         }
     }
 }
+
+CORS_ALLOWED_ORIGINS =[
+    'http://127.0.0.1:3000/', 
+    'https://localhost:3000/',
+    'https://www.thunderclinet.com',
+]
+
+
+CORS_ALLOWED_ALL = True
